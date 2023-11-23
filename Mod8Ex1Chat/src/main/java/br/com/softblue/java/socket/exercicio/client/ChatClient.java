@@ -48,7 +48,7 @@ public class ChatClient {
 	
 	public static void main(String[] args) throws Exception {
 		ChatClient server = new ChatClient();
-		server.start("localhost", 5000); // verificar
+		server.start(args[0], Integer.parseInt(args[1]));
 	}
 
 }
