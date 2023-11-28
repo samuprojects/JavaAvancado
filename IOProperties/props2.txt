@@ -1,0 +1,5 @@
+#Este arquivo foi gerado automaticamente
+#Tue Nov 28 12:56:37 BRT 2023
+msg3=C
+msg2=B
+msg1=A
