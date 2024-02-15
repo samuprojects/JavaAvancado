@@ -1,0 +1,5 @@
+#Thu Feb 15 20:20:17 BRT 2024
+esportes=false
+idade=51
+nome=Pedro
+sexo=MASCULINO
