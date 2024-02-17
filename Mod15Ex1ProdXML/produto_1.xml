@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<br.com.softblue.java.xml.exercicio.Produto>
+    <nome>Produto 1</nome>
+    <categoria>2</categoria>
+    <valor>100.5</valor>
+    <vendido>false</vendido>
+</br.com.softblue.java.xml.exercicio.Produto>
