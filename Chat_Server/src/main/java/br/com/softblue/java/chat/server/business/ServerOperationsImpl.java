@@ -43,7 +43,7 @@ public class ServerOperationsImpl extends UnicastRemoteObject implements ServerO
 			throw new DuplicateNameException("O nome " + clientInfo.getName() + " já existe no chat");
 		}
 
-		String message = clientInfo.getName() + "entrou no chat";
+		String message = clientInfo.getName() + " entrou no chat";
 
 		String formattedMessage = formatMessageFromServerToClients(message);
 
@@ -60,13 +60,14 @@ public class ServerOperationsImpl extends UnicastRemoteObject implements ServerO
 			lock.unlock();
 		}
 
-		String message = clientInfo.getName() + "saiu do chat";
+		String message = clientInfo.getName() + " saiu do chat";
 
 		String formattedMessage = formatMessageFromServerToClients(message);
 
 		broadcastMessage(formattedMessage);
 	}
 
+	@Override
 	public void sendMessage(ClientInfo clientInfo, String message) throws RemoteException {
 		String formattedMessage = formatMessageFromServerToClients(message, clientInfo.getName());
 		broadcastMessage(formattedMessage);

@@ -2,6 +2,7 @@ package br.com.softblue.java.chat.server.ui;
 
 import br.com.softblue.java.chat.common.utils.FXUtils;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -11,7 +12,10 @@ public class ChatServer extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		Pane root = FXUtils.loadLayout("/br/softblue/java/chat/server/ui/ServerWindow.fxml", primaryStage);
+		FXMLLoader loader = new FXMLLoader(ChatServer.class.getResource("/ServerWindow.fxml"));
+		Pane root = loader.load();
+		
+		FXUtils.initLayout(loader, primaryStage);
 		
 		primaryStage.setTitle("Servidor de Chat");
 		primaryStage.setResizable(false);

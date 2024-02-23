@@ -1,5 +1,7 @@
 package br.com.softblue.java.chat.common.utils;
 
+
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
@@ -13,23 +15,19 @@ import javafx.stage.Stage;
 
 public class FXUtils {
 
-	public static <T> T loadLayout(String resourcePath, Stage stage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(FXUtils.class.getResource(resourcePath));
-		T layout = loader.load();
+	public static void initLayout(FXMLLoader loader, Stage stage) throws IOException {
 		
 		Object controllerObj = loader.getController();
 		
-		if (controllerObj !=null & controllerObj instanceof StageAwareController) {
+		if (controllerObj != null & controllerObj instanceof StageAwareController) {
 			StageAwareController controller = (StageAwareController) controllerObj;
 			controller.onStageDefined(stage);
 		}
-		
-		return layout;
 	}
 	
 	public static void showExceptionDialog(Throwable t) {
 		Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle("Ocorreu uma Exceçãoo");
+		alert.setTitle("Ocorreu uma Exceção");
 		alert.setHeaderText("A exceção é do tipo " + t.getClass().getName());
 		alert.setContentText(t.getMessage());
 		

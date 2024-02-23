@@ -1,6 +1,5 @@
 package br.com.softblue.java.chat.server.business;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -41,9 +40,9 @@ public class ServerHandler {
 		Path file = Paths.get(CONFIG_FILE);
 
 		if (Files.exists(file)) {
-			FileInputStream fis = null;
+			
 			try (InputStream in = Files.newInputStream(file)) {
-				props.load(fis);
+				props.load(in);
 
 			}
 		} else {

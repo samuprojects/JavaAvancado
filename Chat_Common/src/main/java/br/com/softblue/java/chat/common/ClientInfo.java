@@ -1,13 +1,12 @@
 package br.com.softblue.java.chat.common;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 import br.com.softblue.java.chat.common.rmi.ClientCallback;
 
 public class ClientInfo implements Serializable {
 
-	private static final long serialVersionUID = -4940321660434497094L;
+	private static final long serialVersionUID = 6037334813162395825L;
 	
 	private String name;
 	
@@ -37,7 +36,10 @@ public class ClientInfo implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(callback, name);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
 	}
 
 	@Override
@@ -49,14 +51,11 @@ public class ClientInfo implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ClientInfo other = (ClientInfo) obj;
-		return Objects.equals(callback, other.callback) && Objects.equals(name, other.name);
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
 	}
-
-	
-	
-	
-	
-	
-	
-
 }

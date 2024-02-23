@@ -1,5 +1,7 @@
 package br.com.softblue.java.chat.client.ui.controller;
 
+import java.io.IOException;
+
 import br.com.softblue.java.chat.client.business.ServerInvoker;
 import br.com.softblue.java.chat.client.business.ServerRequestHandler;
 import br.com.softblue.java.chat.client.config.ClientConfigFile;
@@ -9,8 +11,10 @@ import br.com.softblue.java.chat.common.utils.FXUtils;
 import br.com.softblue.java.chat.common.utils.StageAwareController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -23,7 +27,7 @@ public class MainController implements ServerRequestHandler, StageAwareControlle
 	@FXML
 	private TextField txtNome;
 	@FXML
-	private TextField txtMessages;
+	private TextArea txtMessages;
 	@FXML
 	private TextField txtMessage;
 	@FXML
@@ -44,6 +48,7 @@ public class MainController implements ServerRequestHandler, StageAwareControlle
 		txtMessage.disableProperty().bind(mainModel.connectedProperty().not());
 		txtNome.disableProperty().bind(mainModel.connectedProperty());
 		btnSend.disableProperty().bind(mainModel.connectedProperty().not());
+		
 		mainModel.nameProperty().bindBidirectional(txtNome.textProperty());
 		mainModel.messageProperty().bindBidirectional(txtMessage.textProperty());
 		mainModel.messagesProperty().bindBidirectional(txtMessages.textProperty());
@@ -153,9 +158,6 @@ public class MainController implements ServerRequestHandler, StageAwareControlle
 		});
 	}
 
-	/**
-	 * @see br.com.softblue.java.chat.client.business.ServerRequestHandler#onMessageReceived(java.lang.String)
-	 */
 	@Override
 	public void onMessageReceived(String message) {
 
@@ -165,7 +167,7 @@ public class MainController implements ServerRequestHandler, StageAwareControlle
 	}
 
 	@FXML
-	public void openPreferencesWindow() throws Exception {
+	public void openPreferencesWindow() throws IOException {
 
 		Stage configStage = new Stage();
 		
@@ -175,7 +177,9 @@ public class MainController implements ServerRequestHandler, StageAwareControlle
 		
 		configStage.setResizable(false);
 		
-		Pane root = FXUtils.loadLayout("/br/com/softblue/java/chat/client/ui/Config.fxml", configStage);
+		FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/Config.fxml"));
+		Pane root = loader.load();
+		FXUtils.initLayout(loader, configStage);
 		
 		Scene scene = new Scene(root, 300, 120);
 		configStage.setScene(scene);
